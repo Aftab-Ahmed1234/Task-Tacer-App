@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from 'antd';
+import React, { useState } from 'react';
+import AppHeader from './components/Header';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
-function App() {
+const { Content } = Layout;
+
+const App = () => {
+  // State to manage visibility of TaskForm
+  const [visible, setVisible] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <AppHeader />
+      <Content style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+        {/* Pass visible and setVisible as props to TaskForm */}
+        <TaskForm visible={visible} setVisible={setVisible} />
+        <TaskList />
+      </Content>
+    </Layout>
   );
-}
+};
 
 export default App;
